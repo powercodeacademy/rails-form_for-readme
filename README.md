@@ -17,8 +17,8 @@ Example using `form_tag`:
   <label>Post title:</label><br>
   <%= text_field_tag :title, @post.title %><br>
 
-  <label>Post description</label><br>
-  <%= text_area_tag :description, @post.description %><br>
+  <label for="description">Post description</label><br>
+  <%= text_area_tag :description, @post.description, id: "description" %><br>
 
   <%= submit_tag "Update Post" %>
 <% end %>
@@ -130,6 +130,10 @@ end
 - Always use strong parameters to safely handle nested params
 - `form_with` keeps your code DRY, secure, and up-to-date with Rails conventions
 
-## Summary
+- `form_for` reduces repetition and boilerplate
+- Automatically binds forms to models and chooses the right HTTP verb
+- Works seamlessly with strong parameters
+- Encourages reusable form partials for new/edit
+- Use `form_tag` for non-model forms (like search or login)
 
 `form_with` is now the Rails standard for building forms. It replaces both `form_for` and `form_tag`, and should be your default for new Rails apps. Use `form_with model: ...` for model-backed forms (like editing a Post), and `form_with url: ...` for standalone forms. Always use strong parameters to permit nested attributes. This approach keeps your forms clean, secure, and maintainable!
