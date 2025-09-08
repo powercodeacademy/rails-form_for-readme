@@ -10,19 +10,28 @@ ehthumbs.db
 Thumbs.db
 
 ### Node ###
+
 # Logs
-logs
+log/*
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
+!log/.keep
 
 # Runtime data
+tmp/*
+!tmp/.keep
 pids
 *.pid
 *.seed
 *.pid.lock
+
+# Ignore database files
+*.sqlite3
+db/*.sqlite3
+db/*.sqlite3-journal
+
+# Ignore master key and credentials
+config/master.key
+config/credentials.yml.enc
 
 # Coverage directory used by tools like istanbul
 coverage/
@@ -85,7 +94,7 @@ jspm_packages/
 /config/application.yml
 
 # Ignore the default SQLite database
-/db/*.sqlite3
+/db/*.sqlite3*
 /db/*.sqlite3-journal
 /db/*.sqlite3-*
 

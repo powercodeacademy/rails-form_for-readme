@@ -1,9 +1,7 @@
-<%= form_tag posts_path do %>
+<%= form_with url: posts_path, method: :post, local: true do |form| %>
   <label>Post title:</label><br>
-  <%= text_field_tag :title %><br>
-
+  <%= form.text_field :title %><br>
   <label>Post Description</label><br>
-  <%= text_area_tag :description %><br>
-
-  <%= submit_tag "Submit Post" %>
+  <%= form.text_area :description %><br>
+  <%= form.submit "Submit Post" %>
 <% end %>
