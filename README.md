@@ -4,7 +4,12 @@ In this lesson, you'll learn why model-aware forms are better, how to refactor f
 
 ## Recap: What Does form_tag Look Like?
 
-Suppose you’re building a pet hamster social network, and you need a profile edit page with many fields. With `form_tag`, you have to:
+Suppose you're building a pet hamster social network, and you need a profile edit page with many fields. With `form_tag`, you have to:
+
+- Manually specify the form action and HTTP method
+- Explicitly pass current values to each field helper
+- Handle the routing and parameter structure yourself
+- Write repetitive code for each form field
 
 ## Issues with using `form_tag`
 
@@ -76,13 +81,13 @@ Let's take the `edit` form that utilized the `form_tag` that we built before for
 
 ## form_tag vs form_for: Side-by-Side Comparison
 
-| Feature | form_tag | form_for |
-|---------|----------|----------|
-| Arguments | Route/path | Model instance |
-| Knows whether it’s “new” or “edit”? | ❌ | ✅ (infers from record state) |
-| Field helpers | text_field_tag :title, @post.title | f.text_field :title |
-| Params structure | Flat (params[:title]) | Nested (params[:post][:title]) |
-| Best use case | Non-model forms (search, contact, login) | Model-backed forms (new/edit resources) |
+| Feature                             | form_tag                                 | form_for                                |
+| ----------------------------------- | ---------------------------------------- | --------------------------------------- |
+| Arguments                           | Route/path                               | Model instance                          |
+| Knows whether it’s “new” or “edit”? | ❌                                       | ✅ (infers from record state)           |
+| Field helpers                       | text_field_tag :title, @post.title       | f.text_field :title                     |
+| Params structure                    | Flat (params[:title])                    | Nested (params[:post][:title])          |
+| Best use case                       | Non-model forms (search, contact, login) | Model-backed forms (new/edit resources) |
 
 ## Refactor Example: Edit Form Step by Step
 
@@ -175,7 +180,7 @@ end
 
 One of the biggest benefits of `form_for` is that you can use the same form partial for both new and edit actions. Rails will automatically use POST for new records and PATCH for existing ones.
 
-**_form.html.erb (shared partial):**
+**\_form.html.erb (shared partial):**
 
 ```erb
 <%= form_for @post do |f| %>

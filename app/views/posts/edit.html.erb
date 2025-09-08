@@ -1,8 +1,2 @@
-<h3>Post Form</h3>
-<%= form_with model: @post, local: true do |form| %>
-  <label>Post title:</label><br>
-  <%= form.text_field :title %><br>
-  <label>Post Description</label><br>
-  <%= form.text_area :description %><br>
-  <%= form.submit "Update Post" %>
-<% end %>
+<h3>Edit Post</h3>
+<%= render 'form' %>
